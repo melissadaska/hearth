@@ -1,0 +1,31 @@
+{
+  "name": "hearth",
+  "version": "1.0.0",
+  "description": "A way for family to get together and share events in their lives",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "db/seed.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feuerbacherb/hearth.git"
+  },
+  "author": "Melissa Daskalantonakis, Brent Feuerbacher, Terry Thompson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/feuerbacherb/hearth/issues"
+  },
+  "homepage": "https://github.com/feuerbacherb/hearth#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^6.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.13"
+  }
+}
