@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearth</title>
+  <!--Include link to CSS -->
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>
+        <a href="/">Hearth</a>
+      </h1>
+      <nav>
+        {{#if loggedIn}}
+        <a href="/">Home</a>
+        <a href="/post">Post</a>
+        <button id="logout" class="btn-no-style">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      </nav>    
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      A place to share memories!
+    </footer>
+  </div>
+
+  {{#if loggedIn}}
+  <!--Include link to logout.js file -->
+  {{/if}}  
+</body>
+
+</html>
