@@ -1,5 +1,6 @@
 const Comment = require('./Comment');
 const Group = require('./Group');
+const Picture = require('./Picture');
 const Post = require('./Post');
 const User = require('./User');
 
@@ -23,11 +24,19 @@ Comment.belongsToMany(Post, {
 });
 
 // Picture_Comment table
+Picture.belongsToMany(Comment, {
+   through: 'Picture_Comment'
+});
+
+Comment.belongsTo(Picture, {
+   through: 'Picture_Comment'
+});
 
 
 module.exports = {
    Comment,
    Group,
+   Picture,
    Post,
    User
 };
