@@ -14,6 +14,13 @@ Group.init(
          type: DataTypes.STRING,
          allowNull: false,
          unique: true
+      },
+      uuid: {
+         type: DataTypes.STRING,
+         allowNull: false,
+         validate: {
+            len: [4]
+         }
       }
    },
    {
