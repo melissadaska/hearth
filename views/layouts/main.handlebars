@@ -11,11 +11,12 @@
 
 <body>
   <div class="wrapper">
-    <header class="navbar navbar-dark bg-dark"></header>
+    <header class="navbar navbar-dark bg-dark">
       <a class="text-white navbar-brand" href="/"> Hearth</a>
       <nav>
+       
         {{#if loggedIn}}
-        <ul class="nav justify-content-end">
+        <ul class="nav justify-content-end"> 
           <li class="nav-item">
               <a class="nav-link text-white" href="/">Home</a>
           </li>
@@ -25,12 +26,15 @@
           <li class="nav-item">
                 <button type="button" id="logout" class="btn btn-outline-warning nav-link">Logout</button>
           </li>
-        </ul>
+        </ul> 
         {{else}}
+        <ul class="nav justify-content-end">        
           <li class="nav item">
             <a class="nav-link text-white" href="/login">Login</a>
           </li>
+        </ul>
         {{/if}}
+       
       </nav>    
     </header>
     <main>
