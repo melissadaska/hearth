@@ -7,6 +7,8 @@ const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
+const Jimp = require('jimp');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
