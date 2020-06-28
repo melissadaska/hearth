@@ -18,7 +18,7 @@ UserGroup.init(
             key: 'id'
          }
       },
-      group_id: {
+      tblgroup_id: {
          type: DataTypes.INTEGER,
          references: {
             model: 'tblgroup',

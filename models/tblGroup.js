@@ -38,7 +38,7 @@ tblGroup.init(
          },
          // set up beforeUpdate lifecycle "hook" functionality
          async beforeUpdate(updatedGroupData) {
-           updatedGroupData.password = await bcrypt.hash(updatedGroupData.uuid, 10);
+           updatedGroupData.uuid = await bcrypt.hash(updatedGroupData.uuid, 10);
            return updatedGroupData;
          }
       },

@@ -26,7 +26,7 @@ app.set('view engine', 'handlebars');
 
 const seedAll = async () => {
    // reset the database with demo values
-   await sequelize.sync({ force: false });
+   await sequelize.sync({ force: true });
    console.log('\n******* Database Synced *******');
 
    await seedUsers();

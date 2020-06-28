@@ -55,15 +55,15 @@ router.post('/test2', (req, res) => {
    .then((group) => {
       if (req.body.user_id) {
          const userGroupArr = [{
-            group_id: group.id,
+            tblgroup_id: group.id,
             user_id: req.body.user_id
          }];
-         req.session.save(() => {
-            req.session.group_id = group.id;
-            req.session.user_id = req.session.user_id;
-            req.session.username = req.session.user_name;
-            req.session.loggedIn = true;
-         })
+         // req.session.save(() => {
+         //    req.session.tblgroup_id = group.id;
+         //    req.session.user_id = req.session.user_id;
+         //    req.session.username = req.session.user_name;
+         //    req.session.loggedIn = true;
+         // })
          return UserGroup.bulkCreate(userGroupArr);
       }
       res.status(200).json(product);
@@ -99,7 +99,7 @@ router.post('/test2', (req, res) => {
 // POST /api/groups/validate
 router.post('/validate', (req, res) => {
 
-   Group.findOne({
+   tblGroup.findOne({
       where: {
          name: req.body.name
       }
@@ -117,12 +117,26 @@ router.post('/validate', (req, res) => {
             return;
          }
 
-         req.session.save(() => {
-            req.session.group_id = dbGroupData.id;
-            req.session.user_id = req.session.user_id.id;
-            req.session.username = req.session.user_name;
-            req.session.loggedIn = true;
-         });
+         //res.status(200).json({dbGroupData});
+
+         const userGroupArr = [{
+            tblgroup_id: dbGroupData.id,
+            user_id: req.body.user_id
+         }];
+
+
+         return UserGroup.bulkCreate(userGroupArr);
+
+         // req.session.save(() => {
+         //    req.session.group_id = dbGroupData.id;
+         //    req.session.user_id = req.session.user_id.id;
+         //    req.session.username = req.session.user_name;
+         //    req.session.loggedIn = true;
+         // });
+      })
+      .catch(err => {
+         console.log(err);
+         res.status(500).json({ message: 'The user group combo already exists in the database'});
       });
 });
 
