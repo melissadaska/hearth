@@ -14,9 +14,8 @@
     <header class="navbar navbar-dark bg-dark">
       <a class="text-white navbar-brand" href="/"> Hearth</a>
       <nav>
-       
+        <ul class="nav justify-content-end"></ul>
         {{#if loggedIn}}
-        <ul class="nav justify-content-end"> 
           <li class="nav-item">
               <a class="nav-link text-white" href="/">Home</a>
           </li>
@@ -26,15 +25,8 @@
           <li class="nav-item">
                 <button type="button" id="logout" class="btn btn-outline-warning nav-link">Logout</button>
           </li>
-        </ul> 
-        {{else}}
-        <ul class="nav justify-content-end">        
-          <li class="nav item">
-            <a class="nav-link text-white" href="/login">Login</a>
-          </li>
-        </ul>
         {{/if}}
-       
+        </ul>
       </nav>    
     </header>
     <main>
@@ -46,7 +38,7 @@
   </div>
 
   {{#if loggedIn}}
-  <!--Include link to logout.js file -->
+  <script src="/javascript/logout.js"></script>
   {{/if}}  
 </body>
 
