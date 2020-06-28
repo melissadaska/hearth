@@ -17,6 +17,32 @@ router.get('/', (req, res) => {
       });
 });
 
+// GET /api/postcomment
+// get all postcomments
+router.get('/postcomment', (req, res) => {
+   Post.findAll({
+      attributes: ['id', 'title', 'user_id'],
+      include: [
+         {         
+            model: Comment,
+            attributes: [
+               'id',
+               'comment_text',
+               'created_at'
+            ],
+            include: {
+               model: User,
+               attributes: ['username']
+            }
+         },
+         {
+            model: User,
+            attributes: ['username']
+         }
+      ]
+   });
+});
+
 // GET /api/posts/1
 // get one post
 router.get('/:id', (req, res) => {
@@ -45,6 +71,20 @@ router.post('/', (req, res) => {
       title: req.body.title,
       user_id: req.body.user_id
       // user_id: req.session.user_id
+   })
+      .then(dbPostData => res.json(dbPostData))
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err);
+      });
+});
+
+// POST /api/postcomment
+// create a post that contains comments
+router.post('/postcomment', (req, res) => {
+   Post.create({
+      title: req.body.title,
+      user_id: req.body.user_id
    })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {
