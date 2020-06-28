@@ -22,4 +22,4 @@ async function newFormHandler(event) {
     }
   }
   
-  document.querySelector('.new-group-form').addEventListener('submit', newFormHandler);
+  document.querySelector('.join-group-form').addEventListener('submit', newFormHandler);
