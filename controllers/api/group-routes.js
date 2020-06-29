@@ -1,3 +1,4 @@
+const sequelize = require('../../config/connection');
 const router = require('express').Router();
 const { tblGroup, User, UserGroup } = require('../../models');
 
@@ -11,6 +12,18 @@ router.get('/', (req, res) => {
          res.status(400).json(err);
       });
 });
+
+// GET /api/groups/user_id/:id
+// display all groups associated with user_id
+router.get('/users/:id', (req, res) => {
+   const sql = `select g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id where us.user_id = ${req.params.id};`
+   sequelize.query(sql, { type: sequelize.QueryTypes.SELECT })
+      .then(dbGroupData => res.json(dbGroupData))
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err);
+      })
+})
 
 // GET /api/group/1
 // retrieve one groups
@@ -117,22 +130,26 @@ router.post('/validate', (req, res) => {
             return;
          }
 
-         //res.status(200).json({dbGroupData});
-
          const userGroupArr = [{
             tblgroup_id: dbGroupData.id,
             user_id: req.body.user_id
          }];
 
-
-         return UserGroup.bulkCreate(userGroupArr);
-
+         
+         UserGroup.bulkCreate(userGroupArr)
+            .then(dbGroupInfo => res.status(200).json(dbGroupInfo))
+            .catch(err => {
+               console.log(err);
+               res.status(500).json({ message: 'The user/group combo already exists in the database' });
+            }); 
+         //res.status(200).json(dbGroupData);
          // req.session.save(() => {
          //    req.session.group_id = dbGroupData.id;
          //    req.session.user_id = req.session.user_id.id;
          //    req.session.username = req.session.user_name;
          //    req.session.loggedIn = true;
          // });
+         
       })
       .catch(err => {
          console.log(err);
