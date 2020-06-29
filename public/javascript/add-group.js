@@ -16,7 +16,8 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/homepage');
+      //When the USER creates a group, THEN they are presented with a form to create a post
+      document.location.replace('/add-post');
     } else {
       alert(response.statusText);
     }

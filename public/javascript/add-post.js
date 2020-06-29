@@ -16,7 +16,8 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/homepage');
+      //When the USER creates a post, THEN they are presented with a form to add pictures and descriptions
+      document.location.replace('/picFileUploadForm');
     } else {
       alert(response.statusText);
     }
