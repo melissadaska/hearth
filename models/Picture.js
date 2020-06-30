@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 // create the Picture model
 class Picture extends Model {}
 
-// create fields / columsn for Picture model
+// create fields / columns for Picture model
 Picture.init(
    {
       id: {
@@ -26,7 +26,8 @@ Picture.init(
          allowNull: true
       },
       annotation: {
-         type: DataTypes.STRING
+         type: DataTypes.STRING,
+         allowNull: true
       },
       post_id: {
          type: DataTypes.INTEGER,

@@ -1,10 +1,11 @@
+const sequelize = require('../../config/connection');
 const router = require('express').Router();
-const { Group } = require('../../models');
+const { tblGroup, User, UserGroup } = require('../../models');
 
 // GET /api/groups
 // display all the groups
 router.get('/', (req, res) => {
-   Group.findAll()
+   tblGroup.findAll()
       .then(dbGroupData => res.json(dbGroupData))
       .catch(err => {
          console.log(err);
@@ -12,10 +13,22 @@ router.get('/', (req, res) => {
       });
 });
 
+// GET /api/groups/user_id/:id
+// display all groups associated with user_id
+router.get('/users/:id', (req, res) => {
+   const sql = `select g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id where us.user_id = ${req.params.id};`
+   sequelize.query(sql, { type: sequelize.QueryTypes.SELECT })
+      .then(dbGroupData => res.json(dbGroupData))
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err);
+      })
+})
+
 // GET /api/group/1
 // retrieve one groups
 router.get('/:id', (req, res) => {
-   Group.findOne({
+   tblGroup.findOne({
       where: {
          id: req.params.id
       }
@@ -36,8 +49,9 @@ router.get('/:id', (req, res) => {
 // POST /api/groups
 // create a group
 router.post('/', (req, res) => {
-   Group.create({
-      name: req.body.name
+   tblGroup.create({
+      name: req.body.name,
+      uuid: req.body.uuid
    })
       .then(dbGroupData => res.json(dbGroupData))
       .catch(err => {
@@ -46,10 +60,108 @@ router.post('/', (req, res) => {
       });
 });
 
+router.post('/test2', (req, res) => {
+   tblGroup.create({
+      name: req.body.name,
+      uuid: req.body.uuid
+   })
+   .then((group) => {
+      if (req.body.user_id) {
+         const userGroupArr = [{
+            tblgroup_id: group.id,
+            user_id: req.body.user_id
+         }];
+         // req.session.save(() => {
+         //    req.session.tblgroup_id = group.id;
+         //    req.session.user_id = req.session.user_id;
+         //    req.session.username = req.session.user_name;
+         //    req.session.loggedIn = true;
+         // })
+         return UserGroup.bulkCreate(userGroupArr);
+      }
+      res.status(200).json(product);
+   })
+   .then(userGroupIds => res.status(200).json(userGroupIds))
+   .catch(err => {
+      console.log(err);
+      res.status(400).json(err);
+   });
+});
+
+// POST
+// router.post('/test', (req, res) => {
+//    tblGroup.create({
+//       name: req.body.name,
+//       uuid: req.body.uuid,
+//       usergroups: [{
+//          UserGroup: {
+//             user_id: req.body.user_id
+//          }
+//       }]
+//    },
+//    {
+//       include: User
+//    })
+//       .then(dbGroupData => res.json(dbGroupData))
+//       .catch(err => {
+//          console.log(err);
+//          res.status(500).json(err);
+//       })
+// })
+
+// POST /api/groups/validate
+router.post('/validate', (req, res) => {
+
+   tblGroup.findOne({
+      where: {
+         name: req.body.name
+      }
+   })
+      .then(dbGroupData => {
+         if (!dbGroupData) {
+            res.status(404).json({ message: 'No user with that email address' });
+            return;
+         }
+
+         const validUUID = dbGroupData.checkUUID(req.body.uuid);
+
+         if (!validUUID) {
+            res.status(400).json({ message: 'Incorrect Group Code' });
+            return;
+         }
+
+         const userGroupArr = [{
+            tblgroup_id: dbGroupData.id,
+            user_id: req.body.user_id
+         }];
+
+         
+         UserGroup.bulkCreate(userGroupArr)
+            .then(dbGroupInfo => res.status(200).json(dbGroupInfo))
+            .catch(err => {
+               console.log(err);
+               res.status(500).json({ message: 'The user/group combo already exists in the database' });
+            }); 
+         //res.status(200).json(dbGroupData);
+         // req.session.save(() => {
+         //    req.session.group_id = dbGroupData.id;
+         //    req.session.user_id = req.session.user_id.id;
+         //    req.session.username = req.session.user_name;
+         //    req.session.loggedIn = true;
+         // });
+         
+      })
+      .catch(err => {
+         console.log(err);
+         res.status(500).json({ message: 'The user group combo already exists in the database'});
+      });
+});
+
+
 // PUT /api/groups/1
 // update a group
 router.put('/:id', (req, res) => {
-   Group.update(req.body, {
+   tblGroup.update(req.body, {
       where: {
          id: req.params.id
       }
@@ -70,7 +182,7 @@ router.put('/:id', (req, res) => {
 // DELETE /api/groups/1
 // delete a group
 router.delete('/:id', (req, res) => {
-   Group.destroy({
+   tblGroup.destroy({
       where: {
          id: req.params.id
       }
