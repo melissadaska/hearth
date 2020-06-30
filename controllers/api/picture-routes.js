@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Picture } = require('../../models');
+const fileUpload = require('express-fileupload');
+const Jimp = require('jimp');
 
 // GET /api/pictures
 // get all of the pictures, no filter
@@ -21,9 +23,9 @@ router.get('/', (req, res) => {
 // GET /api/pictures/1
 // get one picture
 router.get('/:id', (req, res) => {
-   Picture.findOne({
+   Picture.findAll({
       where: {
-         id: req.params.id
+         post_id: req.params.id
       }
    })
       .then(dbPictureData => {
@@ -56,7 +58,7 @@ router.post('/', (req, res) => {
          console.log(err);
          res.status(500).json(err);
       });
-});
+}); 
 
 // PUT /api/pictures/1
 // update a picture's information
@@ -99,5 +101,56 @@ router.delete('/:id', (req, res) => {
          res.status(500).json(err);
       });
 });
+
+//Route to post images.
+router.post('/upload', function(req, res) {
+   console.log(req.body);
+   if (!req.files || Object.keys(req.files).length === 0) {
+     res.status(400);
+     return;
+   }
+   let namemod = Math.floor(Math.random() * 1000);
+   namemod = namemod.toString();
+   let upLoadFile = req.files.upLoadFile;
+   let uploadPath = 'public/images/' + upLoadFile.name;
+   let filename = req.files.upLoadFile.name;
+   let filetype =req.files.upLoadFile.mimetype;
+   let fannotation = req.body.annotation;
+   let fuser_id = req.body.user_id;
+   let fpost_id =req.body.post_id;
+   //console.log('req.files >>>', req.files); // eslint-disable-line
+   console.log (fpost_id, fuser_id, fannotation);
+   upLoadFile.mv(uploadPath, function(err) {
+     if (err) {
+       console.log ('Image move error, post pic route', err);
+     }
+   res.send('File uploaded to ' + uploadPath);
+   
+   });
+   Jimp.read(uploadPath, function (err, image) {
+     if (err) throw err;
+     image.resize(Jimp.AUTO, 256)
+                           
+          .write(uploadPath);
+     console.log('Image resized');
+    });
+    //console.log(filename, filetype)
+    Picture.create({
+      filetype: filetype,
+      filename: filename,
+      data: '',
+      annotation: fannotation,
+      post_id: fpost_id, //req.body.post_id
+      user_id: fuser_id //req.body.user_id
+      // user_id: req.sesssion.user_id
+   })
+      //.then(dbPictureData => res.json(dbPictureData))
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(err);
+      });
+    
+});
+
 
 module.exports = router;
