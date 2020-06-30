@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
+
 const { 
    Comment, 
    Group, 
@@ -52,6 +53,7 @@ router.post('/', (req, res) => {
          res.status(500).json(err);
       });
 });
+
 
 // PUT /api/posts/1
 // update a post

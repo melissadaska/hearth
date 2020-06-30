@@ -15,7 +15,7 @@ Picture.init(
       },
       filetype: {
          type: DataTypes.STRING,
-         allowNull: false
+         allowNull: true
       },
       filename: {
          type: DataTypes.STRING,
@@ -23,7 +23,7 @@ Picture.init(
       },
       data: {
          type: DataTypes.BLOB,
-         allowNull: false
+         allowNull: true
       },
       annotation: {
          type: DataTypes.STRING
