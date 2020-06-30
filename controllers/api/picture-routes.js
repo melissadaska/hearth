@@ -23,9 +23,9 @@ router.get('/', (req, res) => {
 // GET /api/pictures/1
 // get one picture
 router.get('/:id', (req, res) => {
-   Picture.findOne({
+   Picture.findAll({
       where: {
-         id: req.params.id
+         post_id: req.params.id
       }
    })
       .then(dbPictureData => {
