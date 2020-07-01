@@ -1,41 +1,6 @@
-<!--Display albums in rows>
-
-<!-- displaying posts
-{{> post-info post}}
-
-<displaying form and comments only if logged>
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea id="comment-body" name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-{{/if}}
-
-{{> comments post.comments}}
-
-{{#if loggedIn}}
-add link to comment.js
-{{/if}} 
-
-<form ref='uploadForm' 
-      id='uploadForm' 
-      action='http://localhost:3001/api/pictures/upload' 
-      method='post' 
-      encType="multipart/form-data">
-      <label for="upLoadFile">Select picture to post:</label><br>
-        <input type="file" name="upLoadFile" /><br>
-        <label for="annotation">Comment for picture</label><br>
-        <input type ="text" name="annotation"/><br>
-        <input type="hidden" id="post_id" name='post_id' value="3487">
-        <input type="hidden" id="user_id" name= 'user_id' value="3487">
-        <input type='submit' value='Upload!' />
-</form> -->
-
 <article>
-    <h2>Your Albums</h2>
+    <h2>Your Posts</h2>
+    
 </article>
+
+{{> add-post}}
