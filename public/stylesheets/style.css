@@ -1,0 +1,21 @@
+
+body {
+    background-image: url("../images/fireplace.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #cccccc;
+}
+
+div {
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    font-size: 110%;
+    font-weight: 700;
+}
