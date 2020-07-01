@@ -8,8 +8,22 @@ body {
     background-color: #cccccc;
 }
 
+header {
+    font-size: 20px;
+}
+
+nav {
+    list-style: none;
+    padding: .5rem 5rem;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
 div {
     justify-content: center;
+    font-size: 25px;
 }
 
 footer {
