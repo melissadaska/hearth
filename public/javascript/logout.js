@@ -6,7 +6,8 @@ async function logout() {
     });
     // check response status
     if (response.ok) {
-    //   document.location.replace('/');
+      document.location.redirect('/');
+      window.location.reload();
     } else {
       alert(response.statusText);
     }

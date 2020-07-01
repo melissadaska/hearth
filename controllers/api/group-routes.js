@@ -22,8 +22,8 @@ router.get('/users/:id', (req, res) => {
       .catch(err => {
          console.log(err);
          res.status(500).json(err);
-      })
-})
+      });
+});
 
 // GET /api/group/1
 // retrieve one groups

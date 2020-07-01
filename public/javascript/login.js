@@ -16,7 +16,9 @@ async function loginFormHandler(event) {
       });
       // check response status
       if (response.ok) {
-        // document.location.replace('/homepage);
+        console.log(response);
+        //window.location.reload();
+        document.location.replace('/');
       } else {
         alert(response.statusText);
       }
@@ -44,7 +46,7 @@ async function signupFormHandler(event) {
       
       // check the response status
     if (response.ok) {
-        // document.location.replace('/homepage');
+        window.location.reload();
       } else {
         alert(response.statusText);
       }

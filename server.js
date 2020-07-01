@@ -15,6 +15,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
    secret: 'cylon sith reavers',
    cookie: {},
+   httpOnly: false,
    resave: false,
    saveUninitialized: true,
    store: new SequelizeStore({

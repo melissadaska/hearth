@@ -73,6 +73,7 @@ router.post('/', (req, res) => {
 
 // POST /api/login
 router.post('/login', (req, res) => {
+   console.log(req.body);
    User.findOne({
       where: {
          email: req.body.email
@@ -92,13 +93,16 @@ router.post('/login', (req, res) => {
          }
 
          // this creates the cookie information for the session
-         //    req.session.save(() => {
-         //    req.session.user_id = dbUserData.id;
-         //    req.session.username = dbUserData.username;
-         //    req.session.loggedIn = true;
-         //});
+         req.session.save(() => {
+            console.log('USER DATA!!!!', JSON.stringify(dbUserData));
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
 
-         res.json({ user: dbUserData, message: 'You are logged in' });
+            console.log('THIS IS AN ENTRY AFTER SESSION STORAGE', JSON.stringify(req.session));
+            res.json({ user: dbUserData, message: 'You are logged in' });
+         })
+
       });
 });
 
