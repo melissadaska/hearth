@@ -6,6 +6,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #cccccc;
+    color: aliceblue;
 }
 
 div {
@@ -18,4 +19,13 @@ footer {
     padding: 1%;
     font-size: 110%;
     font-weight: 700;
+}
+
+nav ul {
+    list-style-type: none;
+    display: inline;
+}
+
+nav li {
+    display: inline;
 }

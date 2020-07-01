@@ -20,4 +20,30 @@ router.get('/', (req, res) => {
    res.render('login');
 });
 
+router.get('/group', (req,res)=>{
+   if (req.session.loggedIn) {
+      
+      console.log("\n\nTHIS IS ME TRYING TO SPLIT IT OUT", req.session.user_id);
+      
+      //find all post with group id of req.params.id
+
+
+   return res.render('group',{});   
+   }
+   res.render('login');
+});
+
+router.get('/posts', (req,res)=>{
+   if (req.session.loggedIn) {
+      //console.log("AFTER LOGGING IN", JSON.stringify(req.session));
+      console.log("\n\nTHIS IS ME TRYING TO SPLIT IT OUT", req.session.user_id);
+      
+      //find all pics with post id of req.params.id
+
+      
+   return res.render('post', {})   
+   }
+res.render('login');
+});
+
 module.exports = router;
