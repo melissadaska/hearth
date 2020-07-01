@@ -1,10 +1,10 @@
 async function newFormHandler(event) {
     event.preventDefault();
   
-    const name = document.querySelector('input[name="group-name"]').value;
-    const uuid = document.querySelector('input[name="group-uuid"]').value;
+    const name = document.querySelector('input[name="join-group-name"]').value;
+    const uuid = document.querySelector('input[name="join-group-uuid"]').value;
   
-    const response = await fetch(`/api/posts`, {
+    const response = await fetch(`/api/groups/validate`, {
       method: 'POST',
       body: JSON.stringify({
         name,

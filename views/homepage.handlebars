@@ -9,9 +9,11 @@ Put all groups in rows
 
 -->
 
-<h1>This is the home page</h1>
-{{#each groups }}
-<input type="button" name={{ name}}>{{ name }}</input>
+<h1>This is the home page for {{ username }}</h1>
+<hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
+{{> add-group }} {{> join-group }}
+{{#each groups as |group| }}
+<button name="{{ group.tblgroup_id }}">{{ group.name }}</input>
 {{/each}}
 
 <script src="/javascript/homepage.js"></script>
