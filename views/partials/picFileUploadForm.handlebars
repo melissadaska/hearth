@@ -1,13 +1,13 @@
  <form ref='uploadForm' 
       id='uploadForm' 
-      action='http://localhost:3001/api/pictures/upload' 
+      action='http:/api/pictures/upload' 
       method='post' 
       encType="multipart/form-data">
       <label for="upLoadFile">Select picture to post:</label><br>
         <input type="file" name="upLoadFile" /><br>
         <label for="annotation">Comment for picture</label><br>
         <input type ="text" name="annotation"/><br>
-        <input type="hidden" id="post_id" name='post_id' value="3487">
-        <input type="hidden" id="user_id" name= 'user_id' value="3487">
+        <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
+        <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
         <input type='submit' value='Upload!' />
   </form>  

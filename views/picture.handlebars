@@ -2,7 +2,22 @@
 
 <!-- List section -->
 <!-- list of posts each is a link to post -->
-{{>add-group}}
-<article>
-    <h2>Your Groups</h2>
-</article>
+<div id='picForm'>
+    {{> picFileUploadForm}}
+</div>
+<div class ='albumPics'>
+<h2>Pictures in this Album</h2>
+<ul>
+{{#each pictures}}
+<li><img src = "/images/{{filename}}">
+    <ul class = 'picinfo'>
+        <li>Created by: {{username}}</li>
+        <li>Picture annotaion: {{annotation}}</li>
+        <li>Created at: {{createdAt}} </li>
+    </ul>
+</li>
+
+{{/each}}
+</ul>
+</div>
+
