@@ -68,17 +68,31 @@ router.get('/:id', (req, res) => {
 // POST /api/posts
 // create a new post
 router.post('/', (req, res) => {
-   Post.create({
-      title: req.body.title,
-      user_id: req.session.user_id,
-      tblgroup_id: req.session.tblgroup_id,
-      description: req.body.description
-   })
-      .then(dbPostData => res.json(dbPostData))
-      .catch(err => {
-         console.log(err);
-         res.status(500).json(err);
-      });
+   if (req.body.user_id) {
+      Post.create({
+         title: req.body.title,
+         user_id: req.body.user_id,
+         tblgroup_id: req.body.tblgroup_id,
+         description: req.body.description
+      })
+         .then(dbPostData => res.json(dbPostData))
+         .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+         })
+   } else {
+      Post.create({
+         title: req.body.title,
+         user_id: req.session.user_id,
+         tblgroup_id: req.session.tblgroup_id,
+         description: req.body.description
+      })
+         .then(dbPostData => res.json(dbPostData))
+         .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+         });
+   }
 });
 
 // POST /api/postcomment

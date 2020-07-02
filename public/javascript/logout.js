@@ -7,7 +7,7 @@ async function logout() {
     // check response status
     if (response.ok) {
       console.log('logged out');
-      document.location.redirect('/login');
+      document.location.replace('/');
       window.location.reload();
     } else {
       alert(response.statusText);
