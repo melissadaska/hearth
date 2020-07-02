@@ -56,7 +56,7 @@ router.get('/picture/:id', (req,res)=>{
          //const pagefeed = dbPostData.map(post => post.get({ plain: true }));
          const pictures = dbPictureData.map(picture => picture.get({plain:true}));
          console.log (pictures);
-         res.render('picture', {username:req.session.username, post_id:req.params.id, user_id:req.session.user_id, pictures}); 
+         res.render('picture', {loggedIn:req.session.loggedIn,username:req.session.username, post_id:req.params.id, user_id:req.session.user_id, pictures}); 
    
          //console.log (pagefeed);
       })
