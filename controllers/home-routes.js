@@ -33,7 +33,6 @@ router.get('/', (req, res) => {
    res.render('login');
 });
 
-<<<<<<< HEAD
 
 
 router.get('/picture/:id', (req,res)=>{
@@ -77,7 +76,6 @@ router.get('/picture/:id', (req,res)=>{
 
 
 
-=======
 router.get('/posts/:id', (req, res) => {
    //console.log('\x1b[33m%s\x1b[30m', `req.session: ${JSON.stringify(req.session)}`);
    if (req.session.loggedIn) {
@@ -130,5 +128,4 @@ router.get('/posts/:id', (req, res) => {
    res.redirect('login');
 });
 
->>>>>>> develop
 module.exports = router;

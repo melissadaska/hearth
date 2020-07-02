@@ -9,18 +9,10 @@ Put all groups in rows
 
 -->
 
-<<<<<<< HEAD
-<h1>This is the home page</h1>
-<!--{{>join-group}}-->
-{{#each groups }}
-<input type="button" name={{ name}}>{{ name }}</input>
-{{/each}}
-=======
->>>>>>> develop
 
 <div class="container">
     <div class="row">
-        <h1>Welcome to the homepage for user {{ username }}</h1>
+        <h1>{{ username }}'s homepage</h1>
     </div>
     <div class="row mb-5">
         <hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
