@@ -7,7 +7,7 @@ const { Comment, Picture, Post, tblGroup, User, UserGroup } = require('../models
 router.get('/', (req, res) => {
    if (req.session.loggedIn) {
       //req.session.tblgroup_id = 3;
-      const sql = `select u.username, g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id inner join user u on us.user_id = u.id where us.user_id = ${req.session.user_id};`
+      const sql = `select u.username, g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id inner join user u on us.user_id = u.id where us.user_id = ${req.session.user_id} order by us.created_at desc;`
       sequelize.query(sql, { type: sequelize.QueryTypes.SELECT })
          //.then(dbGroupData => res.json(dbGroupData))
          .then(dbGroupData => {
@@ -33,6 +33,49 @@ router.get('/', (req, res) => {
    res.render('login');
 });
 
+
+
+router.get('/picture/:id', (req,res)=>{
+   if (req.session.loggedIn) {
+      
+      //console.log("\n\nTHIS IS ME TRYING TO SPLIT IT OUT", req.session.user_id);
+      //console.log('post_id', req.session.post_id);
+      
+      Picture.findAll({
+      where: {
+         post_id: req.params.id
+      }
+      })
+      .then(dbPictureData => {
+         if (!dbPictureData) {
+            console.log('No pictures found') 
+            return;
+         }
+      
+         //console.log(dbPictureData);
+         //const pagefeed = dbPostData.map(post => post.get({ plain: true }));
+         const pictures = dbPictureData.map(picture => picture.get({plain:true}));
+         console.log (pictures);
+         res.render('picture', {username:req.session.username, post_id:req.params.id, user_id:req.session.user_id, pictures}); 
+   
+         //console.log (pagefeed);
+      })
+      .catch(err => {
+         console.log(err);
+         
+      });  
+      //find all post with group id of req.params.id
+     
+   return;
+     
+   }
+   res.render('login');
+});
+
+
+
+
+
 router.get('/posts/:id', (req, res) => {
    //console.log('\x1b[33m%s\x1b[30m', `req.session: ${JSON.stringify(req.session)}`);
    if (req.session.loggedIn) {
@@ -55,9 +98,13 @@ router.get('/posts/:id', (req, res) => {
 
       Post.findAll({
          where: {
-            tblgroup_id: req.params.id,
-            user_id: req.session.user_id
-         }
+            tblgroup_id: req.params.id
+            //,
+            //user_id: req.session.user_id
+         },
+         order: [
+            ['created_at', 'DESC']
+         ]
       })
          .then(dbPostData => {
             //console.log('\x1b[33m%s\x1b[30m', `Inside THEN: ${JSON.stringify(dbPostData[0])}`);

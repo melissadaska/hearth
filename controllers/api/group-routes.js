@@ -120,50 +120,49 @@ router.post('/test2', (req, res) => {
 
 // POST /api/groups/validate
 router.post('/validate', (req, res) => {
-
-   tblGroup.findOne({
-      where: {
-         name: req.body.name
-      }
-   })
-      .then(dbGroupData => {
-         if (!dbGroupData) {
-            res.status(404).json({ message: 'No user with that email address' });
-            return;
+      tblGroup.findOne({
+         where: {
+            name: req.body.name
          }
-
-         const validUUID = dbGroupData.checkUUID(req.body.uuid);
-
-         if (!validUUID) {
-            res.status(400).json({ message: 'Incorrect Group Code' });
-            return;
-         }
-
-         const userGroupArr = [{
-            tblgroup_id: dbGroupData.id,
-            user_id: req.body.user_id
-         }];
-
-         
-         UserGroup.bulkCreate(userGroupArr)
-            .then(dbGroupInfo => res.status(200).json(dbGroupInfo))
-            .catch(err => {
-               console.log(err);
-               res.status(500).json({ message: 'The user/group combo already exists in the database' });
-            }); 
-         //res.status(200).json(dbGroupData);
-         // req.session.save(() => {
-         //    req.session.group_id = dbGroupData.id;
-         //    req.session.user_id = req.session.user_id.id;
-         //    req.session.username = req.session.user_name;
-         //    req.session.loggedIn = true;
-         // });
-         
       })
-      .catch(err => {
-         console.log(err);
-         res.status(500).json({ message: 'The user group combo already exists in the database'});
-      });
+         .then(dbGroupData => {
+            if (!dbGroupData) {
+               res.status(404).json({ message: 'No user with that email address' });
+               return;
+            }
+
+            const validUUID = dbGroupData.checkUUID(req.body.uuid);
+
+            if (!validUUID) {
+               res.status(400).json({ message: 'Incorrect Group Code' });
+               return;
+            }
+
+            const userGroupArr = [{
+               tblgroup_id: dbGroupData.id,
+               user_id: req.session.user_id
+            }];
+
+            
+            UserGroup.bulkCreate(userGroupArr)
+               .then(dbGroupInfo => res.status(200).json(dbGroupInfo))
+               .catch(err => {
+                  console.log(err);
+                  res.status(500).json({ message: 'The user/group combo already exists in the database' });
+               }); 
+            //res.status(200).json(dbGroupData);
+            // req.session.save(() => {
+            //    req.session.group_id = dbGroupData.id;
+            //    req.session.user_id = req.session.user_id.id;
+            //    req.session.username = req.session.user_name;
+            //    req.session.loggedIn = true;
+            // });
+            
+         })
+         .catch(err => {
+            console.log(err);
+            res.status(500).json({ message: 'The user group combo already exists in the database'});
+         });
 });
 
 

@@ -116,15 +116,17 @@ router.post('/upload', function(req, res) {
    let filename = req.files.upLoadFile.name;
    let filetype =req.files.upLoadFile.mimetype;
    let fannotation = req.body.annotation;
-   let fuser_id = req.body.user_id;
-   let fpost_id =req.body.post_id;
+   let fuser_id = parseInt(req.body.user_id);
+   
+   let fpost_id = parseInt(req.body.post_id);
+   
    //console.log('req.files >>>', req.files); // eslint-disable-line
    console.log (fpost_id, fuser_id, fannotation);
    upLoadFile.mv(uploadPath, function(err) {
      if (err) {
        console.log ('Image move error, post pic route', err);
      }
-   res.send('File uploaded to ' + uploadPath);
+   res.status(200);
    
    });
    Jimp.read(uploadPath, function (err, image) {

@@ -1,0 +1,25 @@
+<!-- Form section -->
+
+<!-- List section -->
+<!-- list of posts each is a link to post -->
+<div id='picForm'>
+    <h2>Add pictures to this album.</h2>
+    {{> picFileUploadForm}}
+</div>
+<hr>
+<div class ='albumPics'>
+<h2>Pictures in this Album</h2>
+<ul>
+{{#each pictures}}
+<li><img src = "/images/{{filename}}">
+    <ul class = 'picinfo'>
+        
+        <li>Picture annotaion: {{annotation}}</li>
+        <li>Created at: {{createdAt}} </li>
+    </ul>
+</li>
+
+{{/each}}
+</ul>
+</div>
+
