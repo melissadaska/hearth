@@ -3,9 +3,11 @@ async function newFormHandler(event) {
   
     const name = document.querySelector('input[name="group-name"]').value;
     const uuid = document.querySelector('input[name="group-uuid"]').value;
-    const user_id = document.querySelector('name="user_id"').value;
+    const user_id = document.getElementById('user_id').value;
+
+    alert(user_id);
   
-    const response = await fetch(`/api/groups`, {
+    const response = await fetch(`/api/groups/test2`, {
       method: 'POST',
       body: JSON.stringify({
         name,
@@ -19,7 +21,7 @@ async function newFormHandler(event) {
   
     if (response.ok) {
       //When the USER creates a group, THEN they are presented with a form to create a post
-      document.location.replace('post');
+      document.location.replace('/groups');
     } else {
       alert(response.statusText);
     }

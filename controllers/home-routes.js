@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Comment, Picture, Post, tblGroup, User, UserGroup } = require('../models');
+
+
+
 router.get('/', (req, res) => {
    if (req.session.loggedIn) {
       //req.session.tblgroup_id = 3;
