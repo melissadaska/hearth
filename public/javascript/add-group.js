@@ -9,8 +9,9 @@ async function newFormHandler(event) {
       method: 'POST',
       body: JSON.stringify({
         name,
-        uuid,
-        user_id
+        uuid
+        //,
+        //user_id
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +20,7 @@ async function newFormHandler(event) {
   
     if (response.ok) {
       //When the USER creates a group, THEN they are presented with a form to create a post
-      document.location.replace('groups');
+      document.location.reload();
     } else {
       alert(response.statusText);
     }
