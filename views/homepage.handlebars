@@ -15,15 +15,21 @@ Put all groups in rows
         <h1>Welcome to the homepage for user {{ username }}</h1>
         <hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
     </div>
-    <div class="row">
+    <div class="row mb-5">
         {{> add-group }} 
         {{> join-group }}
     </div>
 
     <div class="row">
+        <div class="card text-dark" style="width: 30rem;">
+            <ul class="list-group list-group-flush text-black">
     {{#each groups as |group| }}
-        <button name="{{ group.tblgroup_id }}">{{ group.name }}</input>
+                <li class="list-group-item text-black mb-2 mt-2">
+                    <p class="card-text">{{ group.name }}<a href="/posts/{{ group.tblgroup_id }}" class="btn btn-primary float-right align-middle">Open Group</a></p>
+                </li>
     {{/each}}
+            </ul>
+        </div>
     </div>
 </div>
 

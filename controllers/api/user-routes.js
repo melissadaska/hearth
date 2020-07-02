@@ -110,11 +110,11 @@ router.post('/login', (req, res) => {
 router.post('/logout', (req, res) => {
    if (req.session.loggedIn) {
       req.session.destroy(() => {
-         res.render('login');         
+         //res.render('login');         
          res.status(204).end();
       });
    } else {
-      res.render('login');
+      //res.render('login');
       res.status(404).end();
    }
 });

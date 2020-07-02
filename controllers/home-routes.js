@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
       sequelize.query(sql, { type: sequelize.QueryTypes.SELECT })
          //.then(dbGroupData => res.json(dbGroupData))
          .then(dbGroupData => {
-            console.log('\x1b[33m%s\x1b[30m', `Inside THEN: ${JSON.stringify(dbGroupData[0])}`);
+            //console.log('\x1b[33m%s\x1b[30m', `Inside THEN: ${JSON.stringify(dbGroupData[0])}`);
             //const groups = dbGroupData.map(group => group.get({ plain: true }));
             const groups = dbGroupData;
             //console.log('\x1b[36m%s\x1b[0m', groups);
@@ -35,6 +35,21 @@ router.get('/posts/:id', (req, res) => {
    if (req.session.loggedIn) {
       req.session.tblgroup_id = req.params.id;
 
+      tblGroup.findOne({
+         where: {
+            id: req.params.id
+         }
+      })
+         .then(dbGroupData => {
+            const groupName = dbGroupData.name;
+            //console.log('\x1b[33m%s\x1b[30m', groupName);
+            req.session.groupName = groupName;
+         })
+         .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+         });
+
       Post.findAll({
          where: {
             tblgroup_id: req.params.id,
@@ -44,9 +59,10 @@ router.get('/posts/:id', (req, res) => {
          .then(dbPostData => {
             //console.log('\x1b[33m%s\x1b[30m', `Inside THEN: ${JSON.stringify(dbPostData[0])}`);
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            console.log(posts);
+            //console.log(posts);
             res.render('post', {
                tblgroup_id: req.session.tblgroup_id,
+               group_name: req.session.groupName,
                username: req.session.username,
                user_id: req.session.user_id,
                posts,
@@ -54,7 +70,7 @@ router.get('/posts/:id', (req, res) => {
             })
          })
          .catch(err => {
-            console.log('\x1b[47m\x1b31m%s\x1b[40m\x1b37m', err);
+            console.log(err);
             res.status(500).json(err);
          });
       return;

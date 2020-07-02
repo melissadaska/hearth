@@ -31,6 +31,10 @@ div {
     padding: 100px;
 }
 
+.card-text {
+    font-size: 14px;
+}
+
 footer {
     display: flex;
     justify-content: center;
