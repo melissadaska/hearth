@@ -47,9 +47,9 @@ router.get('/postcomment', (req, res) => {
 // GET /api/posts/1
 // get one post
 router.get('/:id', (req, res) => {
-   Post.findOne({
+   Post.findAll({
       where: {
-         id: req.params.id
+         tblgroup_id: req.params.id
       }
    })
       .then(dbPostData => {
@@ -70,7 +70,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
    Post.create({
       title: req.body.title,
-      user_id: req.body.user_id
+      user_id: req.body.user_id,
+      tblgroup_id: req.body.tblgroup_id,
+      description: req.body.description
       // user_id: req.session.user_id
    })
       .then(dbPostData => res.json(dbPostData))

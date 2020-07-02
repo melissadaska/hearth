@@ -1,24 +1,11 @@
-<!--Display albums in rows>
 
-<!-- displaying posts
-{{> post-info post}}
+<h1>This is {{username}}'s post page for creating albums</h1>
 
-<displaying form and comments only if logged>
-{{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea id="comment-body" name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-{{/if}}
-
-{{> comments post.comments}}
-
-{{#if loggedIn}}
-add link to comment.js
-{{/if}} -->
-<h1>This is the post page for creating albums</h1>
+{{> add-post }}<br>
+<ol>
+{{#each posts}}
+  <li class="text-white">
+   <a href="/pictures/{{id}}" class="edit-link">{{ title }}</a><br>
+  </li> 
+{{/each}}
+</ol>

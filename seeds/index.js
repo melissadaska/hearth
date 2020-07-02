@@ -9,6 +9,7 @@ const hbs = exphbs.create({ helpers });
 const session = require('express-session');
 const seedUsers = require('./user-seeds');
 const seedGroups = require('./group-seeds');
+const seedPosts = require('./post-seeds');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -35,6 +36,8 @@ const seedAll = async () => {
    await seedGroups();
    console.log('\n******* Groups Seeded *******');
 
+   await seedPosts();
+   console.log('\n******* Posts seeded *******');
 };
 
 seedAll();
