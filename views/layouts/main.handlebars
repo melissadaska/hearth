@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearth</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="navbar navbar-dark bg-dark">
+      <a class="text-white navbar-brand" href="/"> Hearth</a>
+      <nav>
+        <ul class="nav justify-content-end"></ul>
+        {{#if loggedIn }}
+          <li class="nav-item">
+                <button type="button" id="logout" class="btn btn-outline-warning nav-link">Logout</button>
+          </li>
+        {{/if}}
+        </ul>
+      </nav>    
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      A place to share memories!
+    </footer>
+  </div>
+
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}  
+</body>
+
+</html>

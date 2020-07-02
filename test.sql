@@ -1,0 +1,1 @@
+select g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id where us.user_id = 2;

@@ -1,0 +1,38 @@
+<!--
+When the USER logs on, THEN they are taken to the homepage where they will be presented with:
+
+add-group partial
+join-group partial
+OR
+List of groups associated with - click on group then you have user id and group id
+Put all groups in rows
+
+-->
+
+
+<div class="container">
+    <div class="row">
+        <h1>{{ username }}'s homepage</h1>
+    </div>
+    <div class="row mb-5">
+        <hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
+        {{> add-group }} 
+        {{> join-group }}
+    </div>
+
+    <div class="row">
+        <div class="card text-dark" style="width: 30rem;">
+            <ul class="list-group list-group-flush text-black">
+    {{#each groups as |group| }}
+                <li class="list-group-item text-black mb-2 mt-2">
+                    <p class="card-text">{{ group.name }}<a href="/posts/{{ group.tblgroup_id }}" class="btn btn-primary float-right align-middle">Open Group</a></p>
+                </li>
+    {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/javascript/homepage.js"></script>
