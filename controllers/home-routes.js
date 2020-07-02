@@ -7,7 +7,7 @@ const { Comment, Picture, Post, tblGroup, User, UserGroup } = require('../models
 router.get('/', (req, res) => {
    if (req.session.loggedIn) {
       //req.session.tblgroup_id = 3;
-      const sql = `select u.username, g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id inner join user u on us.user_id = u.id where us.user_id = ${req.session.user_id};`
+      const sql = `select u.username, g.name, us.user_id, tblgroup_id from usergroup us inner join tblgroup g on us.tblgroup_id = g.id inner join user u on us.user_id = u.id where us.user_id = ${req.session.user_id} order by us.created_at desc;`
       sequelize.query(sql, { type: sequelize.QueryTypes.SELECT })
          //.then(dbGroupData => res.json(dbGroupData))
          .then(dbGroupData => {
