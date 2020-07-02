@@ -1,17 +1,19 @@
-<section>
-  <h2>Create Group</h2>
+<div class="col-md-4">
+  <section>
+    <h2>Create Group</h2>
 
-  <form class="new-group-form">
-    <div>
-      <label for="group-name">Please Enter Group Name:</label>
-      <input type="text" id="group-name" name="group-name" />
-    </div>
-    <div>
-      <label for="group-uuid">Please Enter Group Code:</label>
-      <input id="group-uuid" name="group-uuid" />
-    </div>
-    <button type="submit" class="btn">Create Group</button>
-  </form>
-</section>
+    <form class="new-group-form">
+      <div>
+        <div class="form-group">
+        <input type="text" id="group-name" name="group-name" class="form-control input-sm" placeholder="Enter Group Name"/>
+      </div>
+      <div>
+        <div class="form-group">
+        <input id="group-uuid" name="group-uuid" class="form-control input-sm" placeholder="Enter Group Code"/>
+      </div>
+      <button type="submit" class="btn btn-info btn-block">Create Group</button>
+    </form>
+  </section>
+</div>
 
 <script src="/javascript/add-group.js"></script>

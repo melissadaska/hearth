@@ -1,17 +1,20 @@
-<section>
-  <h2>Join Group</h2>
+<div class="col-md-4">
+  <section>
+    <h2>Join Group</h2>
 
-  <form class="join-group-form">
-    <div>
-      <label for="group-name">Please Enter Group Name:</label>
-      <input type="text" id="join-group-name" name="join-group-name" />
-    </div>
-    <div>
-      <label for="group-uuid">Please Enter Group Code:</label>
-      <input id="join-group-uuid" name="join-group-uuid" />
-    </div>
-    <button type="submit" class="btn">Join Group</button>
-  </form>
-</section>
+    <form class="join-group-form">
+      <div>
+        <div class="form-group">
+        <input type="text" id="join-group-name" name="join-group-name" class="form-control input-sm" placeholder="Enter Group Name"/>
+      </div>
+      <div>
+        <div class="form-group">
+        <input id="join-group-uuid" name="join-group-uuid" class="form-control input-sm" placeholder="Enter Group Code"/>
+      </div>
+      <button type="submit" class="btn btn-info btn-block">Join Group</button>
+    </form>
+  </section>
+
+</div>
 
 <script src="/javascript/join-group.js"></script>
