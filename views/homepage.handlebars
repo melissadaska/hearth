@@ -9,17 +9,24 @@ Put all groups in rows
 
 -->
 
-<h1>This is the home page for {{ username }}</h1>
-<hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
-{{> add-group }} {{> join-group }}
 
-{{!-- {{> list-group groups }} --}}
+<div class="container">
+    <div class="row">
+        <h1>Welcome to the homepage for user {{ username }}</h1>
+        <hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
+    </div>
+    <div class="row">
+        {{> add-group }} 
+        {{> join-group }}
+    </div>
 
-{{#each groups as |group| }}
-<!-- <button name="{{ group.tblgroup_id }}">{{ group.name }}</input>> -->
-<a href="/posts/{{group.tblgroup_id}}" class="edit-link">{{ group.name }}</a>
-{{/each}}
+    <div class="row">
+    {{#each groups as |group| }}
+        <button name="{{ group.tblgroup_id }}">{{ group.name }}</input>
+    {{/each}}
+    </div>
+</div>
 
-{{!-- <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
+
 
 <script src="/javascript/homepage.js"></script>
