@@ -9,8 +9,31 @@ body {
     color: aliceblue;
 }
 
+header {
+    font-size: 20px;
+}
+
+nav {
+    list-style: none;
+    padding: .5rem 5rem;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
 div {
     justify-content: center;
+    font-size: 25px;
+    color: white;
+}
+
+.container {
+    padding: 100px;
+}
+
+.card-text {
+    font-size: 14px;
 }
 
 .albumPics {

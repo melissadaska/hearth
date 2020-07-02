@@ -1,0 +1,4 @@
+{{#each groups as |group| }}
+<!-- <button name="{{ group.tblgroup_id }}">{{ group.name }}</input>> -->
+<a href="/posts/{{group.tblgroup_id}}" class="edit-link">{{ group.name }}</a>
+{{/each}}
