@@ -29,7 +29,8 @@ async function seedPosts() {
       const title = postData[i].title;
       const description = postData[i].description;
 
-      const response = await fetch('http://localhost:3001/api/posts', {
+      //const response = await fetch('http://localhost:3001/api/posts', {
+      const response = await fetch('https://infinite-ocean-27765.herokuapp.com/api/posts', {
          method: 'POST',
          body: JSON.stringify({
             user_id,
