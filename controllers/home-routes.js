@@ -55,9 +55,13 @@ router.get('/posts/:id', (req, res) => {
 
       Post.findAll({
          where: {
-            tblgroup_id: req.params.id,
-            user_id: req.session.user_id
-         }
+            tblgroup_id: req.params.id
+            //,
+            //user_id: req.session.user_id
+         },
+         order: [
+            ['created_at', 'DESC']
+         ]
       })
          .then(dbPostData => {
             //console.log('\x1b[33m%s\x1b[30m', `Inside THEN: ${JSON.stringify(dbPostData[0])}`);

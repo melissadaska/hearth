@@ -45,11 +45,24 @@ async function signupFormHandler(event) {
       });
       
       // check the response status
-    if (response.ok) {
-        window.location.reload();
+      if (response.ok) {
+          const response = await fetch('/api/users/login', {
+            method: 'post',
+            body: JSON.stringify({
+              email,
+              password
+            }),
+            headers: { 'Content-Type': 'application/json' }
+          });
+
+          if (response.ok) {
+            document.location.replace('/');
+          } else {
+            alert(response.statusText);
+          };
       } else {
         alert(response.statusText);
-      }
+      };
     }
   }
   
