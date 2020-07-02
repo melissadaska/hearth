@@ -61,6 +61,7 @@ router.post('/', (req, res) => {
 });
 
 router.post('/test2', (req, res) => {
+   //console.log(req.body.user_id)
    tblGroup.create({
       name: req.body.name,
       uuid: req.body.uuid
@@ -78,9 +79,16 @@ router.post('/test2', (req, res) => {
          //    req.session.username = req.session.user_name;
          //    req.session.loggedIn = true;
          // })
+         console.log('********* JUST BEFORE BULK CREATE *********');
+         return UserGroup.bulkCreate(userGroupArr);
+      } else {
+         const userGroupArr = [{
+            tblgroup_id: group.id,
+            user_id: req.session.user_id
+         }];
          return UserGroup.bulkCreate(userGroupArr);
       }
-      res.status(200).json(product);
+      res.status(200).json(group);
    })
    .then(userGroupIds => res.status(200).json(userGroupIds))
    .catch(err => {
