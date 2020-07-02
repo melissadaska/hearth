@@ -94,7 +94,7 @@ router.post('/login', (req, res) => {
 
          // this creates the cookie information for the session
          req.session.save(() => {
-            console.log('USER DATA!!!!', JSON.stringify(dbUserData));
+            //console.log('USER DATA!!!!', JSON.stringify(dbUserData));
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;

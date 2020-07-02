@@ -14,6 +14,12 @@ async function seedPosts() {
          tblgroup_id: 1,
          title: 'Thompson Family Photos',
          description: 'This album contains my life\'s work of the greatest set of minds and people on the planet'
+      },
+      {
+         user_id: 3,
+         tblgroup_id: 1,
+         title: 'Incriminating Brent! :-p',
+         description: 'Brent got carried away when we finished the MVP portion of the project.  Melissa and I will hold on to these until Brent runs for office'
       }
    ]
 
