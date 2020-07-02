@@ -14,10 +14,11 @@ async function newFormHandler(event) {
         'Content-Type': 'application/json'
       }
     });
-  
+    console.log(JSON.stringify(response));
+
     if (response.ok) {
       //When the USER creates a post, THEN they are presented with a form to add pictures and descriptions
-      document.location.replace('/picFileUploadForm');
+      //document.location.replace('picFileUploadForm');
     } else {
       alert(response.statusText);
     }

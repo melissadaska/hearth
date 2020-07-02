@@ -2,10 +2,19 @@
 <h1>This is {{username}}'s post page for creating albums</h1>
 
 {{> add-post }}<br>
-<ol>
+{{!-- <ol>
 {{#each posts}}
   <li class="text-white">
-   <a href="/pictures/{{id}}" class="edit-link">{{ title }}</a><br>
+   <a href="/picture/{{id}}" class="btn-primary text-white">{{ title }}</a><br>
   </li> 
 {{/each}}
-</ol>
+</ol> --}}
+{{#each posts}}
+      <div class="card text-dark mb-5">
+        <h5 class="card-header">{{title}}</h5>
+        <div class="card-body text-dark">
+          <p class="card-text">{{description}}</p>
+          <a href="/picture/{{id}}" class="btn btn-primary">Open Album</a>
+        </div>
+      </div>
+{{/each}}

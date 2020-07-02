@@ -70,10 +70,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
    Post.create({
       title: req.body.title,
-      user_id: req.body.user_id,
-      tblgroup_id: req.body.tblgroup_id,
+      user_id: req.session.user_id,
+      tblgroup_id: req.session.tblgroup_id,
       description: req.body.description
-      // user_id: req.session.user_id
    })
       .then(dbPostData => res.json(dbPostData))
       .catch(err => {
@@ -89,7 +88,10 @@ router.post('/postcomment', (req, res) => {
       title: req.body.title,
       user_id: req.body.user_id
    })
-      .then(dbPostData => res.json(dbPostData))
+      .then(dbPostData => {
+         req.session.post_id = dbPostData.id;
+         res.json(dbPostData);
+      })
       .catch(err => {
          console.log(err);
          res.status(500).json(err);
