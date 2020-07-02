@@ -7,12 +7,15 @@ const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
+const Jimp = require('jimp');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
    secret: 'cylon sith reavers',
    cookie: {},
+   httpOnly: false,
    resave: false,
    saveUninitialized: true,
    store: new SequelizeStore({
@@ -27,12 +30,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
-
+app.use(fileUpload());
 // turn on routes
 app.use(routes);
 
+
 app.engine('handlebars', hbs.engine);
+
 app.set('view engine', 'handlebars');
+
 
 // turn on connection to db and server
 sequelize.sync({ force: false })

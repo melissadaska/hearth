@@ -1,0 +1,28 @@
+
+<h1>{{group_name}}'s albums</h1>
+
+{{> add-post }}<br>
+{{!-- <ol>
+{{#each posts}}
+  <li class="text-white">
+   <a href="/picture/{{id}}" class="btn-primary text-white">{{ title }}</a><br>
+  </li> 
+{{/each}}
+</ol> --}}
+<div class="container">
+  <div class="row">
+      <div class="col md-6" align="center">
+        {{#each posts}}
+        <div class="card text-dark" style="width: 30rem;
+        ">
+          <h5 class="card-header">{{title}}</h5>
+          <div class="card-body text-dark">
+            <p class="card-text">{{description}}</p>
+            <a href="/picture/{{id}}" class="btn btn-primary">Open Album</a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+  </div>
+</div>
+
