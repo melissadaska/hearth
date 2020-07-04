@@ -70,7 +70,7 @@ router.put('/:id', (req, res) => {
    })
       .then(dbPictureData => {
          if (!dbPictureData[0]) {
-            res.status(404).json({ message: 'There are not pictures with that id' });
+            res.status(404).json({ message: 'There are no pictures with that id' });
             return;
          }
          res.json(dbPictureData);
@@ -102,8 +102,9 @@ router.delete('/:id', (req, res) => {
       });
 });
 
+
 //Route to post images.
-router.post('/upload', function(req, res) {
+router.post('/upload', async function(req, res) {
    console.log(req.body);
    if (!req.files || Object.keys(req.files).length === 0) {
      res.status(400);
@@ -116,9 +117,9 @@ router.post('/upload', function(req, res) {
    let filename = req.files.upLoadFile.name;
    let filetype =req.files.upLoadFile.mimetype;
    let fannotation = req.body.annotation;
-   let fuser_id = parseInt(req.body.user_id);
+   let fuser_id = req.body.user_id;
    
-   let fpost_id = parseInt(req.body.post_id);
+   let fpost_id = req.body.post_id;
    
    //console.log('req.files >>>', req.files); // eslint-disable-line
    console.log (fpost_id, fuser_id, fannotation);
@@ -129,15 +130,17 @@ router.post('/upload', function(req, res) {
    res.status(200);
    
    });
-   Jimp.read(uploadPath, function (err, image) {
+   await Jimp.read(uploadPath, function (err, image) {
      if (err) throw err;
      image.resize(Jimp.AUTO, 256)
                            
           .write(uploadPath);
      console.log('Image resized');
+     res.status(200);
     });
     //console.log(filename, filetype)
     Picture.create({
+       
       filetype: filetype,
       filename: filename,
       data: '',
@@ -145,7 +148,7 @@ router.post('/upload', function(req, res) {
       post_id: fpost_id, //req.body.post_id
       user_id: fuser_id //req.body.user_id
       // user_id: req.sesssion.user_id
-   })
+      })
       //.then(dbPictureData => res.json(dbPictureData))
       .catch(err => {
          console.log(err);
