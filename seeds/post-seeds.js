@@ -14,6 +14,12 @@ async function seedPosts() {
          tblgroup_id: 1,
          title: 'Thompson Family Photos',
          description: 'This album contains my life\'s work of the greatest set of minds and people on the planet'
+      },
+      {
+         user_id: 3,
+         tblgroup_id: 1,
+         title: 'Incriminating Brent! :-p',
+         description: 'Brent got carried away when we finished the MVP portion of the project.  Melissa and I will hold on to these until Brent runs for office'
       }
    ]
 
@@ -23,7 +29,8 @@ async function seedPosts() {
       const title = postData[i].title;
       const description = postData[i].description;
 
-      const response = await fetch('http://localhost:3001/api/posts', {
+      //const response = await fetch('http://localhost:3001/api/posts', {
+      const response = await fetch('https://infinite-ocean-27765.herokuapp.com/api/posts', {
          method: 'POST',
          body: JSON.stringify({
             user_id,

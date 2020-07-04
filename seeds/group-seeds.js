@@ -71,7 +71,8 @@ const groupData = [
       const uuid = groupData[i].uuid;
       const user_id = groupData[i].user_id;
    
-      const response =  await fetch('http://localhost:3001/api/groups/test2', {
+      //const response =  await fetch('http://localhost:3001/api/groups/test2', {
+      const response = await fetch('https://infinite-ocean-27765.herokuapp.com/api/groups/test2', {
          method: 'post',
          body: JSON.stringify({
             name,

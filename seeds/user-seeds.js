@@ -86,7 +86,8 @@ const userData = [
       const password = userData[i].password;
       const email = userData[i].email;
    
-      const response =  await fetch('http://localhost:3001/api/users', {
+      //const response =  await fetch('http://localhost:3001/api/users', {
+      const response = await fetch('https://infinite-ocean-27765.herokuapp.com/api/users', {
          method: 'post',
          body: JSON.stringify({
             username,

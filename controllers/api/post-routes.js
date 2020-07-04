@@ -81,6 +81,7 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
          })
    } else {
+      
       Post.create({
          title: req.body.title,
          user_id: req.session.user_id,
