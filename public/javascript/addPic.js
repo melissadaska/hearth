@@ -1,4 +1,4 @@
-async function retEvent{
+async function retEvent() {
     //console.log('fired');
     document.location.reload();
 } 
