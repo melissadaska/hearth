@@ -1,6 +1,6 @@
 async function retEvent{
-    console.log('fired');
-    location.reload();
+    //console.log('fired');
+    document.location.reload();
 } 
 
 
