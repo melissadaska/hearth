@@ -56,3 +56,10 @@ nav ul {
 nav li {
     display: inline;
 }
+.card-body{
+    color:black;
+}
+
+.picform{
+    text-align: center;
+}
