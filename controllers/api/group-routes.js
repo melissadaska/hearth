@@ -67,6 +67,7 @@ router.post('/test2', (req, res) => {
       uuid: req.body.uuid
    })
    .then((group) => {
+      console.log(group, req.body.user_id);
       if (req.body.user_id) {
          const userGroupArr = [{
             tblgroup_id: group.id,

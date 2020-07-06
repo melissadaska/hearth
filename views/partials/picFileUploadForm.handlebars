@@ -1,6 +1,6 @@
  {{!-- <form ref='uploadForm' 
       id='uploadForm' 
-      action='http:/api/pictures/upload' 
+      action='/api/pictures/upload' 
       method='post' 
       encType="multipart/form-data">
       <label for="upLoadFile">Select picture to post:</label><br>
@@ -20,7 +20,10 @@
           id='uploadForm' 
           action='https://infinite-ocean-27765.herokuapp.com/api/pictures/upload' 
           method='post' 
+          target="hiddenFrame"
+
           encType="multipart/form-data">
+          
           <label for="upLoadFile">Select picture to post:</label><br>
             <input type="file" name="upLoadFile" class="btn btn-info btn-block"/><br>
             <label for="annotation">Comment for picture</label><br>
@@ -28,9 +31,11 @@
             <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
             <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
             <input type='submit' value='Upload!' class="btn btn-info btn-block"/>
+            
         </form>  
       </div>
     </div>
   </div>
 </div>
-  
+ <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe> 
+ <script src="/javascropt/addPic.js"></script>

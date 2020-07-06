@@ -1,6 +1,6 @@
 async function newFormHandler(event) {
     event.preventDefault();
-  
+    console.log ('add group');
     const name = document.querySelector('input[name="group-name"]').value;
     const uuid = document.querySelector('input[name="group-uuid"]').value;
 
@@ -25,5 +25,7 @@ async function newFormHandler(event) {
       alert(response.statusText);
     }
   }
+
+  
   
   document.querySelector('.new-group-form').addEventListener('submit', newFormHandler);
