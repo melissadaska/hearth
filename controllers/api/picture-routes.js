@@ -105,7 +105,7 @@ router.delete('/:id', (req, res) => {
 
 //Route to post images.
 router.post('/upload', async function(req, res) {
-   console.log(req.body);
+   //console.log(req.body);
    if (!req.files || Object.keys(req.files).length === 0) {
      res.status(400);
      return;
@@ -113,7 +113,7 @@ router.post('/upload', async function(req, res) {
    
    namemod = Math.floor(Math.random() * 1000);
    namemod = namemod.toString();
-   console.log('namemod', namemod);
+   //console.log('namemod', namemod);
    let upLoadFile = req.files.upLoadFile;
    let filename = namemod + req.files.upLoadFile.name;
    let uploadPath = 'public/images/' + filename;
@@ -122,7 +122,7 @@ router.post('/upload', async function(req, res) {
    let fannotation = req.body.annotation;
    let fuser_id = req.body.user_id;
    let fpost_id = req.body.post_id;
-   console.log (filetype);
+   //console.log (filetype);
    //|| (filetype !== 'image/png') || (filetype !== 'image/tiff') || (filetype !== 'image/bmp')
    if (filetype == 'video/mp4' ){
       

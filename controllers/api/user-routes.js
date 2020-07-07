@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
 
 // POST /api/login
 router.post('/login', (req, res) => {
-   console.log(req.body);
+   //console.log(req.body);
    User.findOne({
       where: {
          email: req.body.email
