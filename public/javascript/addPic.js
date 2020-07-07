@@ -1,3 +1,4 @@
+
 const url = '/api/pictures/upload';
 //const url = 'https://infinite-ocean-27765.herokuapp.com/api/pictures/upload';
 async function fileFormHandler(event) {
@@ -26,3 +27,4 @@ async function fileFormHandler(event) {
   }
   
   document.querySelector('#uploadBtn').addEventListener('click', fileFormHandler);
+

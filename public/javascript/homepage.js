@@ -1,7 +1,7 @@
 async function newFormHandler() {
    
  
-   console.log("/n/nTHIS IS WHERE THE COOKIE SHOULD BE", document.cookie);
+   //console.log("/n/nTHIS IS WHERE THE COOKIE SHOULD BE", document.cookie);
    // const response = await fetch(`/api/groups/users/`, {
    //   method: 'GET',
    //   body: JSON.stringify({     }),
