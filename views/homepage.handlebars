@@ -14,11 +14,16 @@ Put all groups in rows
     <div class="row">
         <h1>{{ username }}'s homepage</h1>
     </div>
+
+    <br>
+    
     <div class="row mb-5">
         <hidden name="user-id" id="user_id" value="{{ user_id }}"></hidden>
         {{> add-group }} 
         {{> join-group }}
     </div>
+
+    <br>
 
     <div class="row">
         <div class="card text-dark" style="width: 30rem;">

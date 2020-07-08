@@ -10,22 +10,21 @@
 <h2 class ='picform'>Pictures in this Album</h2>
 <div class ='albumPics'>
 
-
-{{#each pictures}}
-<div class="card" >
-  <img src = "/images/{{filename}}"class="card-img-top" alt="an album image"> 
-  <div class="card-body">
-    
-    <p>Picture annotation: {{annotation}}</p>
-    <p>Created at: {{createdAt}} </p>
-    
+<div class="col-md-5">
+  {{#each pictures}}
+  <div class="card" >
+    <img src = "/images/{{filename}}"class="card-img-top" alt="an album image"> 
+    <div class="card-body">
+      
+      <p>Picture annotation: {{annotation}}</p>
+      <p>Created at: {{createdAt}} </p>
+      
+    </div>
   </div>
-</div>
 
 
+  {{/each}}
 
-
-{{/each}}
-
+  </div>
 </div>
 
