@@ -1,20 +1,7 @@
- {{!-- <form ref='uploadForm' 
-      id='uploadForm' 
-      action='/api/pictures/upload' 
-      method='post' 
-      encType="multipart/form-data">
-      <label for="upLoadFile">Select picture to post:</label><br>
-        <input type="file" name="upLoadFile" /><br>
-        <label for="annotation">Comment for picture</label><br>
-        <input type ="text" name="annotation"/><br>
-        <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
-        <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
-        <input type='submit' value='Upload!' />
-  </form>   --}}
-
+ 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="panel-body">
         <!--<form ref='uploadForm' 
           id='uploadForm' 
@@ -30,12 +17,41 @@
             <input type ="text" name="annotation" id='annotation'/><br>
             <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
             <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
-            <input type='submit' value='Upload!' id= 'uploadBtn' class="btn btn-info btn-block"/>
-            
-        <!--</form> --> 
+            <input type='submit' value='Upload!' id= 'uploadBtn' class="btn btn-info btn-block"/> --}}
+
+        <form class="picture-post-form">
+          <div>
+            <div class="form-group">
+              <h3 class="upLoadFile">Select Picture to Post:</h3>
+            <input type="file" name="upLoadFile" id='theFile' class="btn btn-info btn-block"/>
+            </div>
+          </div>
+        </form>
+
       </div>
     </div>
+
+    <div class="col-md-6">
+      <div class="panel-body">
+        <div class="row">
+
+        <form class="comment-for-picture">
+          <div class="form-group">
+          <h3 class="annotation">Add Comment:</h3>
+            <input type ="text" name="annotation" id='annotation'/><br>
+            <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
+            <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
+            </div>
+            <div>
+            <input type='submit' value='Upload!' id= 'uploadBtn' class="btn btn-info btn-block"/>
+            </div>
+        </form>
+            
+        <!--</form> --> 
+        </div>
+    </div>
   </div>
+</div>
 </div>
  <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe> 
  <script src="/javascript/addPic.js"></script>

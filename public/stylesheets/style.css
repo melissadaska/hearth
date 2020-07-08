@@ -23,9 +23,14 @@ nav {
 }
 
 div {
-    justify-content: center;
     font-size: 25px;
     color: white;
+    justify-content: center;
+
+}
+
+h1, h2, h3 {
+    text-align: center;
 }
 
 .container {
@@ -33,7 +38,7 @@ div {
 }
 
 .card-text {
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .albumPics {
@@ -44,7 +49,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 1%;
-    font-size: 110%;
+    font-size: 25px;
     font-weight: 700;
 }
 
@@ -56,10 +61,24 @@ nav ul {
 nav li {
     display: inline;
 }
-.card-body{
+
+.card-img-top {
+    height: 30rem;
+}
+
+.card-body {
     color:black;
+    height: 8rem;
+}
+
+p {
+    font-size: 20px;
 }
 
 .picform{
     text-align: center;
+}
+
+.annotation {
+    width: 80%;
 }

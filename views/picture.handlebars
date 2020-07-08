@@ -1,31 +1,40 @@
 <!-- Form section -->
-
+<div class="container">
 <!-- List section -->
 <!-- list of posts each is a link to post -->
+<div class="row">
+  <div class="col md-12">
 <div id='picForm'>
-    <h2 class ='picform'>Add pictures to this album.</h2>
+    <h1 class ='picform'>Upload Pictures to this Album</h2>
     {{> picFileUploadForm}}
 </div>
-<hr>
+
+</div>
+
+</div>
+
+</div>
+
 <h2 class ='picform'>Pictures in this Album</h2>
 <div class ='albumPics'>
 
+<div class="col-md-5">
+  {{#each pictures}}
+  <div class="card" >
+    <img src = "/images/{{filename}}"class="card-img-top" alt="an album image"> 
+    <div class="card-body">
+      
+      <p>Picture annotation: {{annotation}}</p>
+      <p>Created at: {{createdAt}} </p>
+      
+    </div>
+  </div>
 
-{{#each pictures}}
-<div class="card" >
-  <img src = "/images/{{filename}}"class="card-img-top" alt="an album image"> 
-  <div class="card-body">
-    
-    <p>Picture annotation: {{annotation}}</p>
-    <p>Created at: {{createdAt}} </p>
-    
+
+  {{/each}}
+
   </div>
 </div>
 
 
-
-
-{{/each}}
-
-</div>
 
