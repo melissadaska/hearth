@@ -1,7 +1,7 @@
  
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="panel-body">
         <!--<form ref='uploadForm' 
           id='uploadForm' 
@@ -28,27 +28,30 @@
           </div>
         </form>
 
-        <br>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="panel-body">
+        <div class="row">
 
         <form class="comment-for-picture">
           <div class="form-group">
-          <h3 class="annotation">Comment for Picture:</h3>
+          <h3 class="annotation">Add Comment:</h3>
             <input type ="text" name="annotation" id='annotation'/><br>
             <input type="hidden" id="post_id" name='post_id' value="{{post_id}}">
             <input type="hidden" id="user_id" name= 'user_id' value= "{{user_id}}">
+            </div>
+            <div>
             <input type='submit' value='Upload!' id= 'uploadBtn' class="btn btn-info btn-block"/>
             </div>
         </form>
             
         <!--</form> --> 
-      </div>
+        </div>
     </div>
   </div>
+</div>
 </div>
  <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe> 
  <script src="/javascript/addPic.js"></script>
