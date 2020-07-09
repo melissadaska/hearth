@@ -137,7 +137,7 @@ router.post('/upload', async function(req, res) {
        console.log ('Image move error, post pic route', err);
      }
      console.log('file written to images')
-   res.status(200);
+   //res.status(200);
    
    });
    
@@ -164,6 +164,8 @@ router.post('/upload', async function(req, res) {
               .write(uploadPath);
          console.log('Image resized');
          return res.send('File uploaded!');
+         //return res.status(200);
+
         });
    
   
