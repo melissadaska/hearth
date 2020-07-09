@@ -104,16 +104,16 @@ router.delete('/:id', (req, res) => {
 
 
 //Route to post images.
-router.post('/upload', async function(req, res) {
+router.post('/upload', function(req, res) {
    //console.log(req.body);
    if (!req.files || Object.keys(req.files).length === 0) {
      res.status(400);
      return;
-   }
+   };
    
    namemod = Math.floor(Math.random() * 1000);
    namemod = namemod.toString();
-   //console.log('namemod', namemod);
+  
    let upLoadFile = req.files.upLoadFile;
    let filename = namemod + req.files.upLoadFile.name;
    let uploadPath = 'public/images/' + filename;
@@ -122,27 +122,46 @@ router.post('/upload', async function(req, res) {
    let fannotation = req.body.annotation;
    let fuser_id = req.body.user_id;
    let fpost_id = req.body.post_id;
-   //console.log (filetype);
+  
    //|| (filetype !== 'image/png') || (filetype !== 'image/tiff') || (filetype !== 'image/bmp')
    if (filetype == 'video/mp4' ){
       
       console.log('File type failed');
       return res.send('Incorrect file type');
    };
-   //console.log('req.files >>>', req.files); // eslint-disable-line
-   //console.log (filename, uploadPath);
-
-   await upLoadFile.mv(uploadPath, function(err) {
-     if (err) {
-       console.log ('Image move error, post pic route', err);
-     }
-     console.log('file written to images')
-   //res.status(200);
+   Picture.create({
+      filetype: filetype,
+      filename: filename,
+      data: '',
+      annotation: fannotation,
+      post_id: fpost_id,
+      user_id: fuser_id
+   })
+      .then(
+         upLoadFile.mv(uploadPath, function(err) {
+            if (err) {
+               console.log('Image move error, post pic route', err);
+            }
+            console.log('file written to images');
+         })
+      )
+      .then(
+         Jimp.read(uploadPath, function(err, image) {
+            if (err) throw err;
+            image.resize(256, Jimp.AUTO)
+               .write(uploadPath);
+            console.log('image resized');
+            return res.send('File uploaded');
+         })
+      )
+      .catch(err => {
+         console.log(err);
+         res.status(500).json(error);
+      })
    
-   });
-   
+});
     //console.log(filename, filetype)
-    await Picture.create({
+    /*await Picture.create({
        
       filetype: filetype,
       filename: filename,
@@ -169,7 +188,7 @@ router.post('/upload', async function(req, res) {
         });
    
   
-});
+});*/
 
 
 module.exports = router;
