@@ -1,6 +1,6 @@
 
-const url = '/api/pictures/upload';
-//npm starconst url = 'https://infinite-ocean-27765.herokuapp.com/api/pictures/upload';
+//const url = '/api/pictures/upload';
+const url = 'https://infinite-ocean-27765.herokuapp.com/api/pictures/upload';
 async function fileFormHandler(event) {
     //console.log('button clicked, eventhandler launched');
    
