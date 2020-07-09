@@ -132,7 +132,7 @@ router.post('/upload', async function(req, res) {
    //console.log('req.files >>>', req.files); // eslint-disable-line
    //console.log (filename, uploadPath);
 
-   upLoadFile.mv(uploadPath, function(err) {
+   await upLoadFile.mv(uploadPath, function(err) {
      if (err) {
        console.log ('Image move error, post pic route', err);
      }
@@ -142,7 +142,7 @@ router.post('/upload', async function(req, res) {
    });
    
     //console.log(filename, filetype)
-    Picture.create({
+    await Picture.create({
        
       filetype: filetype,
       filename: filename,
@@ -157,7 +157,7 @@ router.post('/upload', async function(req, res) {
          console.log(err);
          res.status(500).json(err);
       });
-      Jimp.read(uploadPath, function (err, image) {
+      await Jimp.read(uploadPath, function (err, image) {
          if (err) throw err;
          image.resize( 256, Jimp.AUTO)
                                
