@@ -143,17 +143,18 @@ router.post('/upload', function(req, res) {
                console.log('Image move error, post pic route', err);
             }
             console.log('file written to images');
+            return res.send('File uploaded');
          })
-      )
+      )/*
       .then(
          Jimp.read(uploadPath, function(err, image) {
-            if (err) throw err;
-            image.resize(256, Jimp.AUTO)
+            if (err) console.log(err);
+            image.resize(Jimp.AUTO,256)
                .write(uploadPath);
             console.log('image resized');
             return res.send('File uploaded');
          })
-      )
+      )*/
       .catch(err => {
          console.log(err);
          res.status(500).json(error);
